@@ -1,4 +1,5 @@
-﻿/// <summary>
+﻿
+/// <summary>
 /// IP024Coinウォレットアプリケーションフォーム
 /// </summary>
 /// <author>
@@ -193,14 +194,13 @@ namespace jgsip024coinApp
                     message += textPayAmount.Text.ToString();
                     message += "_P";
 
-                    // TargetAreaかどうかを追加
-                    message += jgsip024coinClass.inTargetArea(textPlaceJudge.Text.ToString()) ? "1" : "0";
-
                     jgsip024coinClass.writeToFile("-------------クライアントとして実行-------------");
                     jgsip024coinClass.writeToFile("OP_RETURN = " + message);
                 }
 
                 pictureBoxNowLoading.Visible = true;
+				// TargetAreaかどうかを追加
+				message += jgsip024coinClass.inTargetArea(textPlaceJudge.Text.ToString()) ? "1" : "0";
 
                 // 支払実行
                 string result = jgsip024coinClass.SendMoney(list[0], list[1], textDestinationAddress.Text.ToString(), 0, 0.0005, message);
